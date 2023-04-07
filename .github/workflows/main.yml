@@ -1,19 +1,19 @@
-name: Get JSON Data
+name: Send Email
+
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '0 9 * * *' # 每天早上 9 点发送邮件
+
 jobs:
-  get-json:
+  send-email:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Install jq
-      run: sudo apt-get install -y jq
-    - name: Get JSON Data
+      
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      
+    - name: Send email
       run: |
-        JSON=$(curl https://v0.yiketianqi.com/api?unescape=1&version=v61&appid=62128999&appsecret=5wb6X6d6&cityid=101250101)
-        A=$(echo $JSON | jq -r '.tem1')
-        echo $A
-        echo "::set-env name=A::$A"
+        php send_email.php
