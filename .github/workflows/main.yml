@@ -1,0 +1,14 @@
+name: Get Tem1 Value
+on:
+  push:
+    branches:
+      - main
+jobs:
+  get-tem1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Get Tem1 Value
+      run: |
+        curl https://v0.yiketianqi.com/api?unescape=1&version=v61&appid=62128999&appsecret=5wb6X6d6&cityid=101250101 | jq '.tem1'
