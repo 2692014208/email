@@ -1,15 +1,19 @@
-name: Get Tem1 Value
+name: Get JSON Data
 on:
   push:
     branches:
       - main
 jobs:
-  get-tem1:
+  get-json:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    - name: Get Tem1 Value
+    - name: Install jq
       run: sudo apt-get install -y jq
+    - name: Get JSON Data
       run: |
-        curl https://v0.yiketianqi.com/api?unescape=1&version=v61&appid=62128999&appsecret=5wb6X6d6&cityid=101250101 | jq '.tem1'
+        JSON=$(curl https://v0.yiketianqi.com/api?unescape=1&version=v61&appid=62128999&appsecret=5wb6X6d6&cityid=101250101)
+        A=$(echo $JSON | jq -r '.tem1')
+        echo $A
+        echo "::set-env name=A::$A"
