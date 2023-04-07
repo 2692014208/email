@@ -1,13 +1,13 @@
 <?php
 // 收件人地址
-$to_addr = 'receiver@example.com';
+$to_addr = '2692014208@qq.com';
 
 // 发件人地址和密码
-$from_addr = 'sender@example.com';
-$password = 'password';
+$from_addr = '2692014208@qq.com';
+$password = 'ljcytiiqopxddecc';
 
 // SMTP 服务器地址和端口号
-$smtp_server = 'smtp.example.com';
+$smtp_server = 'smtp.qq.com';
 $smtp_port = 587;
 
 // 邮件内容
